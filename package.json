@@ -1,0 +1,44 @@
+{
+  "name": "@globalart/ssh-keygen",
+  "version": "0.1.0",
+  "author": {
+    "name": "GlobalArt, Inc",
+    "url": "https://globalart.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GlobalArtInc/ssh-keygen.git"
+  },
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "keywords": [
+    "ssh",
+    "key",
+    "pair",
+    "private",
+    "public"
+  ],
+  "main": "./dist/index.js",
+  "description": "Generates SSH key-pairs",
+  "dependencies": {
+    "underscore": "1.4.x"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "coveralls": "^3.0.5",
+    "prettier": "^2.1.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.5"
+  },
+  "scripts": {
+    "format": "prettier --write \"**/*.ts\"",
+    "setup:test": "node_modules/.bin/ts-node node_modules/.bin/typeorm schema:sync",
+    "test": "jest --runInBand",
+    "coveralls": "yarn run test:cov --coverageReporters=text-lcov | coveralls",
+    "test:cov": "jest --coverage",
+    "build": "rm -rf ./dist && tsc && npm run build:index",
+    "build:index": "tsc",
+    "prepublish": "npm run format && npm run build"
+  }
+}
